@@ -6,7 +6,7 @@ Note: This repo was forked from Sokol POA Network faucet. Thank you POA network 
 
 1. Clone repository
   ```
-  git clone https://github.com/ava-labs/poa-faucet
+  git clone https://github.com/ava-labs/athereum-faucet
   ```
 2. Copy `config.json.example` to `config.json`
   ```
