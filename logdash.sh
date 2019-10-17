@@ -1,0 +1,1 @@
+cat ./log/*access.log | goaccess /home/ubuntu/ath-faucet/log/access.log -o /home/ubuntu/ath-faucet/public/report.html --log-format=COMBINED --real-time-html --ws-url=athfaucet.ava.network:21234 --port=21234 --daemonize -

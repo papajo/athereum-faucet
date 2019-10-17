@@ -1,7 +1,36 @@
 const express = require('express')
 const fs = require('fs')
 const bodyParser = require('body-parser')
+var morgan = require('morgan')
+var path = require("path");
+var rfs = require('rotating-file-stream')
+var errorhandler = require('errorhandler')
+
 let app = express();
+
+app.use(errorhandler({ dumpExceptions: true, showStack: true, log: errorNotification })); 
+
+function errorNotification (err, str, req) {
+  var title = 'Error in ' + req.method + ' ' + req.url;
+
+  console.log("Error in", req.method, req.url, str);
+  console.log("---------query---------");
+  console.log("%o", req.query);
+  console.log("---------body ---------");
+  console.log("%o", req.body);
+  console.log("---------stack---------");
+  console.log(err.stack);
+
+}
+
+// create a rotating write stream
+var accessLogStream = rfs('access.log', {
+  interval: '1d', // rotate daily
+  path: path.join(__dirname, 'log')
+})
+
+// setup the logger
+app.use(morgan('combined', { stream: accessLogStream }));
 
 require('./src/helpers/blockchain-helper')(app)
 

@@ -2,8 +2,11 @@
 node_modules/
 public/assets/javascripts/application.js
 public/assets/stylesheets/application.css
+public/report.html
 config.json
-
+log/*
+!log/.gitkeep
+nohup.out
 # IDE
 .idea
 .vscode
